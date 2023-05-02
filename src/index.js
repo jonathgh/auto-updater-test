@@ -39,11 +39,11 @@ app.on('ready', () => {
     logger: require('electron-log')
   });
 
-  // updateApp({
-  //     // repo: 'wavery/whisperscript-releases', // defaults to package.json
-  //     updateInterval: '1 hour',
-  //     notifyUser: true
-  // });
+  updateApp({
+      // repo: 'wavery/whisperscript-releases', // defaults to package.json
+      updateInterval: '1 hour',
+      notifyUser: true
+  });
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common
