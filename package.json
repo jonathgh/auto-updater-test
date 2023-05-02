@@ -2,8 +2,8 @@
   "name": "auto-update-example",
   "productName": "auto-update-example",
   "version": "1.0.0",
-  "description": "My Electron application description",
-  "repository": "https://github.com/getwavery/whisperscript-releases",
+  "description": "Application description",
+  "repository": "https://github.com/jonathgh/auto-updater-test",
   "main": "src/index.js",
   "config": {
     "forge": {
@@ -34,8 +34,8 @@
           "name": "@electron-forge/publisher-github",
           "config": {
             "repository": {
-              "owner": "getwavery",
-              "name": "whisperscript-releases"
+              "owner": "jonathgh",
+              "name": "auto-updater-test"
             }
           }
         }

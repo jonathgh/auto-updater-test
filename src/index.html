@@ -7,6 +7,17 @@
   </head>
   <body>
     <h1>💖 Hello World!</h1>
-    <p>Welcome to your Electron application.</p>
+    <p>A Quick Test of the Auto Updater in Electron</p>
+    <p id="version"></p>
+    <script>
+      const { ipcRenderer } = require('electron');
+      const version = document.getElementById('version');
+      
+      ipcRenderer.send('app_version');
+      ipcRenderer.on('app_version', (event, arg) => {
+        ipcRenderer.removeAllListeners('app_version');
+        version.innerText = 'Your Version is: ' + arg.version;
+      });
+    </script>
   </body>
 </html>

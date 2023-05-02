@@ -1,5 +1,8 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, autoUpdater } = require('electron');
 const path = require('path');
+
+// Set the auto-updater feed URL here:
+autoUpdater.setFeedURL('https://dist.unlock.sh/v1/electron/my-app')
 
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -55,6 +58,20 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+ipcMain.on('app_version', (event) => {
+  event.sender.send('app_version', { version: app.getVersion() });
+});
+
+autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
+  //
+})
+
+setInterval(() => {
+  autoUpdater.checkForUpdates()
+}, 30000)
+
+autoUpdater.checkForUpdates()
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
