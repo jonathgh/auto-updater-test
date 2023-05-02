@@ -2,7 +2,7 @@ const { app, BrowserWindow, autoUpdater } = require('electron');
 const path = require('path');
 
 // Set the auto-updater feed URL here:
-autoUpdater.setFeedURL('https://dist.unlock.sh/v1/electron/my-app')
+// autoUpdater.setFeedURL('https://dist.unlock.sh/v1/electron/my-app')
 
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -33,7 +33,9 @@ const createWindow = () => {
 app.on('ready', createWindow);
 
 app.on('ready', () => {
-  updateApp = require('update-electron-app');
+  updateApp = require('update-electron-app')({
+    logger: require('electron-log')
+  });
 
   updateApp({
       // repo: 'wavery/whisperscript-releases', // defaults to package.json
@@ -67,11 +69,11 @@ autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
   //
 })
 
-setInterval(() => {
-  autoUpdater.checkForUpdates()
-}, 30000)
+// setInterval(() => {
+//   autoUpdater.checkForUpdates()
+// }, 30000)
 
-autoUpdater.checkForUpdates()
+// autoUpdater.checkForUpdates()
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
