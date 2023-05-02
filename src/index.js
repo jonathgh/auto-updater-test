@@ -1,4 +1,4 @@
-const { app, BrowserWindow, autoUpdater } = require('electron');
+const { app, BrowserWindow, autoUpdater, ipcMain, contextBridge } = require('electron');
 const path = require('path');
 
 // Set the auto-updater feed URL here:
@@ -25,6 +25,8 @@ const createWindow = () => {
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
+
+  console.log('app.getVersion()', app.getVersion());
 };
 
 // This method will be called when Electron has finished
@@ -37,11 +39,11 @@ app.on('ready', () => {
     logger: require('electron-log')
   });
 
-  updateApp({
-      // repo: 'wavery/whisperscript-releases', // defaults to package.json
-      updateInterval: '1 hour',
-      notifyUser: true
-  });
+  // updateApp({
+  //     // repo: 'wavery/whisperscript-releases', // defaults to package.json
+  //     updateInterval: '1 hour',
+  //     notifyUser: true
+  // });
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common
@@ -65,9 +67,9 @@ ipcMain.on('app_version', (event) => {
   event.sender.send('app_version', { version: app.getVersion() });
 });
 
-autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
-  //
-})
+// autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
+//   //
+// })
 
 // setInterval(() => {
 //   autoUpdater.checkForUpdates()
